@@ -28,9 +28,9 @@ import Dishes from "./Dishes.astro";
           >
           </span>
           <button
-            @click="view = 'menu'"
+            @click="view = 'select'"
             class="btn btn-square btn-outline w-full"
-            :class="view ==='menu' && 'btn-active'"
+            :class="view ==='select' && 'btn-active'"
           >
             <box-icon type="solid" name="food-menu" class="fill-current"
             ></box-icon>
@@ -57,8 +57,8 @@ import Dishes from "./Dishes.astro";
         <Dishes />
       </div>
 
-      <div x-show="view === 'menu'">
-        <div>menu</div>
+      <div x-show="view === 'select'">
+        <div>select</div>
       </div>
 
       <div x-show="view === 'foods'">
