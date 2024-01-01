@@ -13,7 +13,10 @@ const recipes = await getCollection("recipes");
             class="indicator-item badge font-medium me-6"
           >
           </span>
-          <button class="btn btn-square btn-outline w-full">
+          <button
+            @click="view = 'dishes'"
+            class="btn btn-square btn-outline w-full"
+          >
             <box-icon type="solid" name="dish" class="fill-current"></box-icon>
           </button>
         </div>
@@ -24,7 +27,10 @@ const recipes = await getCollection("recipes");
             class="indicator-item badge font-medium me-6"
           >
           </span>
-          <button class="btn btn-square btn-outline w-full">
+          <button
+            @click="view = 'menu'"
+            class="btn btn-square btn-outline w-full"
+          >
             <box-icon type="solid" name="food-menu" class="fill-current"
             ></box-icon>
           </button>
@@ -36,11 +42,26 @@ const recipes = await getCollection("recipes");
             class="indicator-item badge font-medium me-6"
           >
           </span>
-          <button class="btn btn-square btn-outline w-full">
+          <button
+            @click="view = 'foods'"
+            class="btn btn-square btn-outline w-full"
+          >
             <box-icon type="solid" name="cart" class="fill-current"></box-icon>
           </button>
         </div>
       </div>
+
+      <template x-if="view === 'dishes'">
+        <div>dishes</div>
+      </template>
+
+      <template x-if="view === 'menu'">
+        <div>menu</div>
+      </template>
+
+      <template x-if="view === 'foods'">
+        <div>foods</div>
+      </template>
     </div>
   </div>
 </section>
@@ -48,6 +69,7 @@ const recipes = await getCollection("recipes");
 <script define:vars={{ recipes }}>
   document.addEventListener("alpine:init", () => {
     Alpine.data("foods", () => ({
+      view: "dishes",
       term: "",
 
       get dishes() {
