@@ -19,7 +19,10 @@ const { recipes } = Astro.props;
     <div>
       <div class="flex justify-between items-center gap-4">
         <div x-text="dish.data.name"></div>
-        <button class="btn btn-sm btn-square btn-outline">
+        <button
+          @click="toggleSelect(dish)"
+          class="btn btn-sm btn-square btn-outline"
+        >
           <box-icon name="plus" class="fill-current"></box-icon>
         </button>
       </div>
@@ -34,12 +37,19 @@ const { recipes } = Astro.props;
   document.addEventListener("alpine:init", () => {
     Alpine.data("dishes", () => ({
       search: "",
+      select: [],
 
       get dishes() {
         const term = this.search.toLowerCase();
         return recipes.filter((dish) =>
           dish.data.name.toLowerCase().includes(term)
         );
+      },
+
+      toggleSelect(dish) {
+        const index = this.select.indexOf(dish.slug);
+        if (index === -1) this.select.push(dish.slug);
+        else this.select.splice(index, 1);
       },
     }));
   });
