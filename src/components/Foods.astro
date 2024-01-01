@@ -1,1 +1,44 @@
-<div>foods</div>
+<div x-data="foods">
+  <h1 class="text-2xl text-center font-semibold mb-4">Продукты</h1>
+
+  <template x-for="food in $store.global.foods" :key="food.slug">
+    <div>
+      <div class="flex justify-between items-center gap-4">
+        <div>
+          <div x-text="food.name" :class="isBuy(food) && 'line-through'"></div>
+          <div x-text="food.dish" class="text-xs"></div>
+        </div>
+        <button
+          @click="toggleBuy(food)"
+          class="btn btn-sm btn-square btn-outline"
+        >
+          <box-icon x-show="isBuy(food)" name="check" class="fill-current"
+          ></box-icon>
+        </button>
+      </div>
+      <div class="divider my-1"></div>
+    </div>
+  </template>
+
+  <div x-show="!$store.global.foods.length" class="text-center">
+    Блюда не выбраны.
+  </div>
+</div>
+
+<script is:inline>
+  document.addEventListener("alpine:init", () => {
+    Alpine.data("foods", () => ({
+      toggleBuy(food) {
+        const index = Alpine.store("global").buy.indexOf(food.slug);
+        if (index === -1) Alpine.store("global").buy.push(food.slug);
+        else Alpine.store("global").buy.splice(index, 1);
+      },
+
+      isBuy(food) {
+        const index = Alpine.store("global").buy.indexOf(food.slug);
+        if (index === -1) return false;
+        else return true;
+      },
+    }));
+  });
+</script>
