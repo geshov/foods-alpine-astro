@@ -1,10 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 const recipes = await getCollection("recipes");
-
-const dishes = recipes;
-const menu = recipes;
-const foods = recipes;
 ---
 
 <section class="_section">
@@ -49,11 +45,16 @@ const foods = recipes;
   </div>
 </section>
 
-<script is:inline define:vars={{ recipes }}>
+<script define:vars={{ recipes }}>
   document.addEventListener("alpine:init", () => {
     Alpine.data("foods", () => ({
+      term: "",
+
       get dishes() {
-        return recipes.map((dish) => dish);
+        console.log(recipes[0]);
+        return recipes.filter((dish) =>
+          dish.data.name.toLowerCase().includes(this.term)
+        );
       },
 
       get menu() {
