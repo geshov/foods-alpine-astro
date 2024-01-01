@@ -1,9 +1,5 @@
 ---
-import { getCollection } from "astro:content";
-import { sortDishes } from "../utils/helpers";
 import Dishes from "./Dishes.astro";
-
-const recipes = sortDishes(await getCollection("recipes"));
 ---
 
 <section class="_section">
@@ -11,7 +7,10 @@ const recipes = sortDishes(await getCollection("recipes"));
     <div x-data="navbar">
       <div class="flex justify-between gap-2 pb-6">
         <div class="indicator flex-grow flex-shrink pt-1">
-          <span x-text="count" class="indicator-item badge font-medium me-6">
+          <span
+            x-text="$store.global.count.dishes"
+            class="indicator-item badge font-medium me-6"
+          >
           </span>
           <button
             @click="view = 'dishes'"
@@ -23,7 +22,10 @@ const recipes = sortDishes(await getCollection("recipes"));
         </div>
 
         <div class="indicator flex-grow flex-shrink pt-1">
-          <span x-text="count" class="indicator-item badge font-medium me-6">
+          <span
+            x-text="$store.global.count.select"
+            class="indicator-item badge font-medium me-6"
+          >
           </span>
           <button
             @click="view = 'menu'"
@@ -36,7 +38,10 @@ const recipes = sortDishes(await getCollection("recipes"));
         </div>
 
         <div class="indicator flex-grow flex-shrink pt-1">
-          <span x-text="count" class="indicator-item badge font-medium me-6">
+          <span
+            x-text="$store.global.count.foods"
+            class="indicator-item badge font-medium me-6"
+          >
           </span>
           <button
             @click="view = 'foods'"
@@ -49,7 +54,7 @@ const recipes = sortDishes(await getCollection("recipes"));
       </div>
 
       <div x-show="view === 'dishes'">
-        <Dishes recipes={recipes} />
+        <Dishes />
       </div>
 
       <div x-show="view === 'menu'">
@@ -63,11 +68,10 @@ const recipes = sortDishes(await getCollection("recipes"));
   </div>
 </section>
 
-<script define:vars={{ recipes }}>
+<script is:inline>
   document.addEventListener("alpine:init", () => {
     Alpine.data("navbar", () => ({
       view: "dishes",
-      count: 40,
     }));
   });
 </script>

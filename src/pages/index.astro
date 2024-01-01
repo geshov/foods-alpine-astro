@@ -2,6 +2,10 @@
 import "@fontsource-variable/inter";
 import "../assets/css/global.css";
 
+import { getCollection } from "astro:content";
+import { sortDishes } from "../utils/helpers";
+const recipes = sortDishes(await getCollection("recipes"));
+
 import Theme from "../components/Theme.astro";
 import Navbar from "../components/Navbar.astro";
 ---
@@ -25,4 +29,31 @@ import Navbar from "../components/Navbar.astro";
   import Alpine from "alpinejs";
   window["Alpine"] = Alpine;
   Alpine.start();
+</script>
+
+<script define:vars={{ recipes }}>
+  document.addEventListener("alpine:init", () => {
+    Alpine.store("global", {
+      select: [],
+      buy: [],
+
+      get recipes() {
+        return recipes;
+      },
+
+      get count() {
+        return {
+          dishes: this.recipes.length,
+          select: this.select.length,
+          foods: 12,
+        };
+      },
+
+      toggleSelect(dish) {
+        const index = this.select.indexOf(dish.slug);
+        if (index === -1) this.select.push(dish.slug);
+        else this.select.splice(index, 1);
+      },
+    });
+  });
 </script>
