@@ -41,15 +41,17 @@ const { recipes } = Astro.props;
 
       get dishes() {
         const term = this.search.toLowerCase();
-        return recipes.filter((dish) =>
-          dish.data.name.toLowerCase().includes(term)
-        );
+        return recipes
+          .filter((dish) => !this.select.includes(dish.slug))
+          .filter((dish) => dish.data.name.toLowerCase().includes(term));
       },
 
       toggleSelect(dish) {
         const index = this.select.indexOf(dish.slug);
         if (index === -1) this.select.push(dish.slug);
         else this.select.splice(index, 1);
+
+        console.log(this.select);
       },
     }));
   });
