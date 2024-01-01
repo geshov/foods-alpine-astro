@@ -6,12 +6,3 @@ export const sortDishes = (dishes) => {
   });
   return dishes;
 };
-
-export const sortFoods = (foods) => {
-  foods.sort((a, b) => {
-    if (a.name > b.name) return 1;
-    else if (a.name < b.name) return -1;
-    else return 0;
-  });
-  return foods;
-};

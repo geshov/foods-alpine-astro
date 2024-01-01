@@ -68,13 +68,22 @@ const recipes = sortDishes(await getCollection("recipes")).map((recipe) => ({
           }));
           menuFoods = [...menuFoods, ...dishFoods];
         });
-        return menuFoods;
+        return this.sortFoods(menuFoods);
       },
 
       toggleSelect(dish) {
         const index = this.select.indexOf(dish.slug);
         if (index === -1) this.select.push(dish.slug);
         else this.select.splice(index, 1);
+      },
+
+      sortFoods(foods) {
+        foods.sort((a, b) => {
+          if (a.name > b.name) return 1;
+          else if (a.name < b.name) return -1;
+          else return 0;
+        });
+        return foods;
       },
     });
   });
