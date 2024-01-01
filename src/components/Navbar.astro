@@ -1,17 +1,17 @@
 ---
 import { getCollection } from "astro:content";
-const recipes = await getCollection("recipes");
+import { sortDishes } from "../utils/helpers";
+import Dishes from "./Dishes.astro";
+
+const recipes = sortDishes(await getCollection("recipes"));
 ---
 
 <section class="_section">
   <div class="_container">
-    <div x-data=`foods`>
+    <div x-data="navbar">
       <div class="flex justify-between gap-2 pb-6">
         <div class="indicator flex-grow flex-shrink pt-1">
-          <span
-            x-text="dishes.length"
-            class="indicator-item badge font-medium me-6"
-          >
+          <span x-text="count" class="indicator-item badge font-medium me-6">
           </span>
           <button
             @click="view = 'dishes'"
@@ -23,10 +23,7 @@ const recipes = await getCollection("recipes");
         </div>
 
         <div class="indicator flex-grow flex-shrink pt-1">
-          <span
-            x-text="menu.length"
-            class="indicator-item badge font-medium me-6"
-          >
+          <span x-text="count" class="indicator-item badge font-medium me-6">
           </span>
           <button
             @click="view = 'menu'"
@@ -39,10 +36,7 @@ const recipes = await getCollection("recipes");
         </div>
 
         <div class="indicator flex-grow flex-shrink pt-1">
-          <span
-            x-text="foods.length"
-            class="indicator-item badge font-medium me-6"
-          >
+          <span x-text="count" class="indicator-item badge font-medium me-6">
           </span>
           <button
             @click="view = 'foods'"
@@ -55,7 +49,7 @@ const recipes = await getCollection("recipes");
       </div>
 
       <div x-show="view === 'dishes'">
-        <div>dishes</div>
+        <Dishes recipes={recipes} />
       </div>
 
       <div x-show="view === 'menu'">
@@ -71,23 +65,9 @@ const recipes = await getCollection("recipes");
 
 <script define:vars={{ recipes }}>
   document.addEventListener("alpine:init", () => {
-    Alpine.data("foods", () => ({
+    Alpine.data("navbar", () => ({
       view: "dishes",
-      term: "",
-
-      get dishes() {
-        return recipes.filter((dish) =>
-          dish.data.name.toLowerCase().includes(this.term)
-        );
-      },
-
-      get menu() {
-        return recipes.map((dish) => dish);
-      },
-
-      get foods() {
-        return recipes.map((dish) => dish);
-      },
+      count: 40,
     }));
   });
 </script>

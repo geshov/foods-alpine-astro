@@ -1,0 +1,44 @@
+---
+const { recipes } = Astro.props;
+---
+
+<div x-data="dishes">
+  <h1 class="text-2xl text-center font-semibold mb-4">Блюда</h1>
+
+  <div class="input input-bordered w-full pe-0 mb-6 flex items-center">
+    <box-icon name="search" class="fill-current"></box-icon>
+    <input
+      x-model="search"
+      type="text"
+      placeholder="Поиск..."
+      class="input border-0 w-full h-full"
+    />
+  </div>
+
+  <template x-for="dish in dishes" :key="dish.slug">
+    <div>
+      <div class="flex justify-between items-center gap-4">
+        <div x-text="dish.data.name"></div>
+        <button class="btn btn-sm btn-square btn-outline">
+          <box-icon name="plus" class="fill-current"></box-icon>
+        </button>
+      </div>
+      <div class="divider my-1"></div>
+    </div>
+  </template>
+</div>
+
+<script define:vars={{ recipes }}>
+  document.addEventListener("alpine:init", () => {
+    Alpine.data("dishes", () => ({
+      search: "",
+
+      get dishes() {
+        const term = this.search.toLowerCase();
+        return recipes.filter((dish) =>
+          dish.data.name.toLowerCase().includes(term)
+        );
+      },
+    }));
+  });
+</script>
