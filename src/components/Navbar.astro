@@ -9,34 +9,46 @@ const foods = recipes;
 
 <section class="_section">
   <div class="_container">
-    <div class="flex justify-between gap-2 pb-6">
-      <div class="indicator flex-grow flex-shrink pt-1">
-        <span class="indicator-item badge font-medium me-6">
-          {dishes.length}
-        </span>
-        <button class="btn btn-square btn-outline w-full">
-          <box-icon type="solid" name="dish" class="fill-current"></box-icon>
-        </button>
-      </div>
+    <div x-data="foods">
+      <div class="flex justify-between gap-2 pb-6">
+        <div x-text="a1"></div>
 
-      <div class="indicator flex-grow flex-shrink pt-1">
-        <span class="indicator-item badge font-medium me-6">
-          {menu.length}
-        </span>
-        <button class="btn btn-square btn-outline w-full">
-          <box-icon type="solid" name="food-menu" class="fill-current"
-          ></box-icon>
-        </button>
-      </div>
+        <div class="indicator flex-grow flex-shrink pt-1">
+          <span class="indicator-item badge font-medium me-6">
+            {dishes.length}
+          </span>
+          <button class="btn btn-square btn-outline w-full">
+            <box-icon type="solid" name="dish" class="fill-current"></box-icon>
+          </button>
+        </div>
 
-      <div class="indicator flex-grow flex-shrink pt-1">
-        <span class="indicator-item badge font-medium me-6">
-          {foods.length}
-        </span>
-        <button class="btn btn-square btn-outline w-full">
-          <box-icon type="solid" name="cart" class="fill-current"></box-icon>
-        </button>
+        <div class="indicator flex-grow flex-shrink pt-1">
+          <span class="indicator-item badge font-medium me-6">
+            {menu.length}
+          </span>
+          <button class="btn btn-square btn-outline w-full">
+            <box-icon type="solid" name="food-menu" class="fill-current"
+            ></box-icon>
+          </button>
+        </div>
+
+        <div class="indicator flex-grow flex-shrink pt-1">
+          <span class="indicator-item badge font-medium me-6">
+            {foods.length}
+          </span>
+          <button class="btn btn-square btn-outline w-full">
+            <box-icon type="solid" name="cart" class="fill-current"></box-icon>
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<script is:inline>
+  document.addEventListener("alpine:init", () => {
+    Alpine.data("foods", () => ({
+      a1: "qwerty",
+    }));
+  });
+</script>
