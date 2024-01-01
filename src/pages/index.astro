@@ -49,6 +49,10 @@ import Navbar from "../components/Navbar.astro";
         };
       },
 
+      get menu() {
+        return this.recipes.filter((dish) => this.select.includes(dish.slug));
+      },
+
       toggleSelect(dish) {
         const index = this.select.indexOf(dish.slug);
         if (index === -1) this.select.push(dish.slug);

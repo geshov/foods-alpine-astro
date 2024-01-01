@@ -1,7 +1,7 @@
-<div x-data="select">
+<div>
   <h1 class="text-2xl text-center font-semibold mb-4">Меню</h1>
 
-  <template x-for="dish in select" :key="dish.slug">
+  <template x-for="dish in $store.global.menu" :key="dish.slug">
     <div>
       <div class="flex justify-between items-center gap-4">
         <div x-text="dish.data.name"></div>
@@ -16,17 +16,7 @@
     </div>
   </template>
 
-  <div x-show="!select.length" class="text-center">Блюда не выбраны.</div>
+  <div x-show="!$store.global.menu.length" class="text-center">
+    Блюда не выбраны.
+  </div>
 </div>
-
-<script is:inline>
-  document.addEventListener("alpine:init", () => {
-    Alpine.data("select", () => ({
-      get select() {
-        return Alpine.store("global").recipes.filter((dish) =>
-          Alpine.store("global").select.includes(dish.slug)
-        );
-      },
-    }));
-  });
-</script>

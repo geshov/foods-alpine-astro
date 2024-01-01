@@ -1,6 +1,7 @@
 ---
 import Dishes from "./Dishes.astro";
-import Select from "./Select.astro";
+import Menu from "./Menu.astro";
+import Foods from "./Foods.astro";
 ---
 
 <section class="_section">
@@ -59,11 +60,11 @@ import Select from "./Select.astro";
       </div>
 
       <div x-show="view === 'select'">
-        <Select />
+        <Menu />
       </div>
 
       <div x-show="view === 'foods'">
-        <div>foods</div>
+        <Foods />
       </div>
     </div>
   </div>
