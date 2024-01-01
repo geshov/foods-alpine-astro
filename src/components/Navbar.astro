@@ -16,6 +16,7 @@ const recipes = await getCollection("recipes");
           <button
             @click="view = 'dishes'"
             class="btn btn-square btn-outline w-full"
+            :class="view ==='dishes' && 'btn-active'"
           >
             <box-icon type="solid" name="dish" class="fill-current"></box-icon>
           </button>
@@ -30,6 +31,7 @@ const recipes = await getCollection("recipes");
           <button
             @click="view = 'menu'"
             class="btn btn-square btn-outline w-full"
+            :class="view ==='menu' && 'btn-active'"
           >
             <box-icon type="solid" name="food-menu" class="fill-current"
             ></box-icon>
@@ -45,23 +47,24 @@ const recipes = await getCollection("recipes");
           <button
             @click="view = 'foods'"
             class="btn btn-square btn-outline w-full"
+            :class="view ==='foods' && 'btn-active'"
           >
             <box-icon type="solid" name="cart" class="fill-current"></box-icon>
           </button>
         </div>
       </div>
 
-      <template x-if="view === 'dishes'">
+      <div x-show="view === 'dishes'">
         <div>dishes</div>
-      </template>
+      </div>
 
-      <template x-if="view === 'menu'">
+      <div x-show="view === 'menu'">
         <div>menu</div>
-      </template>
+      </div>
 
-      <template x-if="view === 'foods'">
+      <div x-show="view === 'foods'">
         <div>foods</div>
-      </template>
+      </div>
     </div>
   </div>
 </section>
@@ -73,7 +76,6 @@ const recipes = await getCollection("recipes");
       term: "",
 
       get dishes() {
-        console.log(recipes[0]);
         return recipes.filter((dish) =>
           dish.data.name.toLowerCase().includes(this.term)
         );
