@@ -9,13 +9,13 @@ const foods = recipes;
 
 <section class="_section">
   <div class="_container">
-    <div x-data="foods">
+    <div x-data=`foods`>
       <div class="flex justify-between gap-2 pb-6">
-        <div x-text="a1"></div>
-
         <div class="indicator flex-grow flex-shrink pt-1">
-          <span class="indicator-item badge font-medium me-6">
-            {dishes.length}
+          <span
+            x-text="dishes.length"
+            class="indicator-item badge font-medium me-6"
+          >
           </span>
           <button class="btn btn-square btn-outline w-full">
             <box-icon type="solid" name="dish" class="fill-current"></box-icon>
@@ -23,8 +23,10 @@ const foods = recipes;
         </div>
 
         <div class="indicator flex-grow flex-shrink pt-1">
-          <span class="indicator-item badge font-medium me-6">
-            {menu.length}
+          <span
+            x-text="menu.length"
+            class="indicator-item badge font-medium me-6"
+          >
           </span>
           <button class="btn btn-square btn-outline w-full">
             <box-icon type="solid" name="food-menu" class="fill-current"
@@ -33,8 +35,10 @@ const foods = recipes;
         </div>
 
         <div class="indicator flex-grow flex-shrink pt-1">
-          <span class="indicator-item badge font-medium me-6">
-            {foods.length}
+          <span
+            x-text="foods.length"
+            class="indicator-item badge font-medium me-6"
+          >
           </span>
           <button class="btn btn-square btn-outline w-full">
             <box-icon type="solid" name="cart" class="fill-current"></box-icon>
@@ -45,10 +49,20 @@ const foods = recipes;
   </div>
 </section>
 
-<script is:inline>
+<script is:inline define:vars={{ recipes }}>
   document.addEventListener("alpine:init", () => {
     Alpine.data("foods", () => ({
-      a1: "qwerty",
+      get dishes() {
+        return recipes.map((dish) => dish);
+      },
+
+      get menu() {
+        return recipes.map((dish) => dish);
+      },
+
+      get foods() {
+        return recipes.map((dish) => dish);
+      },
     }));
   });
 </script>
