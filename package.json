@@ -13,6 +13,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "@fontsource-variable/inter": "^5.0.16",
     "@tailwindcss/typography": "^0.5.10",
+    "alpinejs": "^3.13.3",
     "astro": "^4.0.8",
     "boxicons": "^2.1.4",
     "daisyui": "^4.4.24",
