@@ -4,10 +4,14 @@ import "../assets/css/global.css";
 
 import { getCollection } from "astro:content";
 import { sortDishes } from "../utils/helpers";
-const recipes = sortDishes(await getCollection("recipes"));
 
 import Theme from "../components/Theme.astro";
 import Navbar from "../components/Navbar.astro";
+
+const recipes = sortDishes(await getCollection("recipes")).map((recipe) => ({
+  data: recipe.data,
+  slug: recipe.slug,
+}));
 ---
 
 <html lang="ru">
