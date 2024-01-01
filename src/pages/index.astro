@@ -45,12 +45,25 @@ import Navbar from "../components/Navbar.astro";
         return {
           dishes: this.recipes.length,
           select: this.select.length,
-          foods: 12,
+          foods: this.foods.length,
         };
       },
 
       get menu() {
         return this.recipes.filter((dish) => this.select.includes(dish.slug));
+      },
+
+      get foods() {
+        let menuFoods = [];
+        this.menu.forEach((dish) => {
+          const dishFoods = dish.data.foods.map((food, index) => ({
+            slug: dish.slug + "-" + index,
+            name: food,
+            dish: dish.data.name,
+          }));
+          menuFoods = [...menuFoods, ...dishFoods];
+        });
+        return menuFoods;
       },
 
       toggleSelect(dish) {
