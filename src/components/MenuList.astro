@@ -1,4 +1,9 @@
-<h1 class="text-2xl text-center font-semibold mb-4">Меню</h1>
+---
+import ListTitle from "./ListTitle.astro";
+import ListEmpty from "./ListEmpty.astro";
+---
+
+<ListTitle title="Меню" />
 
 <template x-for="dish in menu" :key="dish.slug">
   <div>
@@ -15,4 +20,4 @@
   </div>
 </template>
 
-<div x-show="!menu.length" class="text-center">Блюда не выбраны.</div>
+<ListEmpty show="!menu.length" text="Блюда не выбраны." />

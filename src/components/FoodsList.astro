@@ -1,4 +1,9 @@
-<h1 class="text-2xl text-center font-semibold mb-4">Продукты</h1>
+---
+import ListTitle from "./ListTitle.astro";
+import ListEmpty from "./ListEmpty.astro";
+---
+
+<ListTitle title="Продукты" />
 
 <template x-for="food in foods" :key="food.slug">
   <div>
@@ -19,4 +24,4 @@
   </div>
 </template>
 
-<div x-show="!foods.length" class="text-center">Блюда не выбраны.</div>
+<ListEmpty show="!foods.length" text="Блюда не выбраны." />

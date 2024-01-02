@@ -66,6 +66,12 @@ Alpine.data("foods", () => ({
     if (index === -1) return false;
     else return true;
   },
+
+  clearAll() {
+    this.buy.splice(0, this.buy.length);
+    this.select.splice(0, this.select.length);
+    this.search = "";
+  },
 }));
 
 Alpine.start();

@@ -1,4 +1,9 @@
-<h1 class="text-2xl text-center font-semibold mb-4">Блюда</h1>
+---
+import ListTitle from "./ListTitle.astro";
+import ListEmpty from "./ListEmpty.astro";
+---
+
+<ListTitle title="Блюда" />
 
 <div class="input input-bordered w-full pe-0 mb-6 flex items-center">
   <box-icon name="search" class="fill-current"></box-icon>
@@ -25,4 +30,4 @@
   </div>
 </template>
 
-<div x-show="!dishes.length" class="text-center">Блюда не найдены.</div>
+<ListEmpty show="!dishes.length" text="Блюда не найдены." />
