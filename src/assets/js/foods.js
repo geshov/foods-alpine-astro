@@ -1,69 +1,74 @@
 import Alpine from "alpinejs";
 window["Alpine"] = Alpine;
 
-Alpine.data("foods", () => ({
-  view: "dishes",
-  search: "",
+import persist from "@alpinejs/persist";
+Alpine.plugin(persist);
 
-  select: [],
-  buy: [],
+Alpine.data("foods", function () {
+  return {
+    view: this.$persist("dishes"),
+    search: this.$persist(""),
 
-  get dishes() {
-    const term = this.search.toLowerCase();
-    return this.recipes
-      .filter((dish) => !this.select.includes(dish.slug))
-      .filter((dish) => dish.data.name.toLowerCase().includes(term));
-  },
+    select: this.$persist([]),
+    buy: this.$persist([]),
 
-  get menu() {
-    return this.recipes.filter((dish) => this.select.includes(dish.slug));
-  },
+    get dishes() {
+      const term = this.search.toLowerCase();
+      return this.recipes
+        .filter((dish) => !this.select.includes(dish.slug))
+        .filter((dish) => dish.data.name.toLowerCase().includes(term));
+    },
 
-  get foods() {
-    let menuFoods = [];
-    this.menu.forEach((dish) => {
-      const dishFoods = dish.data.foods.map((food, index) => ({
-        slug: dish.slug + "-" + index,
-        name: food,
-        dish: dish.data.name,
-      }));
-      menuFoods = [...menuFoods, ...dishFoods];
-    });
-    return this.sortFoods(menuFoods);
-  },
+    get menu() {
+      return this.recipes.filter((dish) => this.select.includes(dish.slug));
+    },
 
-  sortFoods(foods) {
-    foods.sort((a, b) => {
-      if (a.name > b.name) return 1;
-      else if (a.name < b.name) return -1;
-      else return 0;
-    });
-    return foods;
-  },
+    get foods() {
+      let menuFoods = [];
+      this.menu.forEach((dish) => {
+        const dishFoods = dish.data.foods.map((food, index) => ({
+          slug: dish.slug + "-" + index,
+          name: food,
+          dish: dish.data.name,
+        }));
+        menuFoods = [...menuFoods, ...dishFoods];
+      });
+      return this.sortFoods(menuFoods);
+    },
 
-  toggleSelect(dish) {
-    const index = this.select.indexOf(dish.slug);
-    if (index === -1) this.select.push(dish.slug);
-    else this.select.splice(index, 1);
-  },
+    sortFoods(foods) {
+      foods.sort((a, b) => {
+        if (a.name > b.name) return 1;
+        else if (a.name < b.name) return -1;
+        else return 0;
+      });
+      return foods;
+    },
 
-  toggleBuy(food) {
-    const index = this.buy.indexOf(food.slug);
-    if (index === -1) this.buy.push(food.slug);
-    else this.buy.splice(index, 1);
-  },
+    toggleSelect(dish) {
+      const index = this.select.indexOf(dish.slug);
+      if (index === -1) this.select.push(dish.slug);
+      else this.select.splice(index, 1);
+    },
 
-  isBuy(food) {
-    const index = this.buy.indexOf(food.slug);
-    if (index === -1) return false;
-    else return true;
-  },
+    toggleBuy(food) {
+      const index = this.buy.indexOf(food.slug);
+      if (index === -1) this.buy.push(food.slug);
+      else this.buy.splice(index, 1);
+    },
 
-  clearAll() {
-    this.buy.splice(0, this.buy.length);
-    this.select.splice(0, this.select.length);
-    this.search = "";
-  },
-}));
+    isBuy(food) {
+      const index = this.buy.indexOf(food.slug);
+      if (index === -1) return false;
+      else return true;
+    },
+
+    clearAll() {
+      this.buy.splice(0, this.buy.length);
+      this.select.splice(0, this.select.length);
+      this.search = "";
+    },
+  };
+});
 
 Alpine.start();
