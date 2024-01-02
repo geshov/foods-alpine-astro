@@ -19,7 +19,7 @@ const { Content } = await recipe.render();
   </head>
   <body>
     <div class="prose">
-      <Content />
+      {recipe.body ? <Content /> : <div>Рецепт скоро будет добавлен.</div>}
     </div>
   </body>
 </html>
