@@ -1,6 +1,7 @@
 ---
 import ListTitle from "./ListTitle.astro";
 import DishesSearch from "./DishesSearch.astro";
+import Recipe from "./Recipe.astro";
 import ListEmpty from "./ListEmpty.astro";
 ---
 
@@ -10,12 +11,8 @@ import ListEmpty from "./ListEmpty.astro";
 <template x-for="dish in dishes" :key="dish.slug">
   <div>
     <div class="flex justify-between items-center gap-4">
-      <div
-        @click="showRecipe(dish.data.name, dish.slug)"
-        x-text="dish.data.name"
-        class="cursor-pointer"
-      >
-      </div>
+      <Recipe />
+
       <button
         @click="toggleSelect(dish)"
         class="btn btn-sm btn-square btn-outline"
@@ -23,6 +20,7 @@ import ListEmpty from "./ListEmpty.astro";
         <box-icon name="plus" class="fill-current"></box-icon>
       </button>
     </div>
+
     <div class="divider my-1"></div>
   </div>
 </template>

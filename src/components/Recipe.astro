@@ -1,0 +1,7 @@
+<div @click="showRecipe(dish.data.name, dish.slug)" class="cursor-pointer">
+  <span x-text="dish.data.name"></span>
+  <span x-show="dish.body">
+    <box-icon type="solid" name="file" class="align-middle fill-current"
+    ></box-icon>
+  </span>
+</div>

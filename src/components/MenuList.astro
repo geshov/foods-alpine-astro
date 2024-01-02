@@ -1,5 +1,6 @@
 ---
 import ListTitle from "./ListTitle.astro";
+import Recipe from "./Recipe.astro";
 import ListEmpty from "./ListEmpty.astro";
 ---
 
@@ -8,7 +9,8 @@ import ListEmpty from "./ListEmpty.astro";
 <template x-for="dish in menu" :key="dish.slug">
   <div>
     <div class="flex justify-between items-center gap-4">
-      <div x-text="dish.data.name"></div>
+      <Recipe />
+
       <button
         @click="toggleSelect(dish)"
         class="btn btn-sm btn-square btn-outline"
@@ -16,6 +18,7 @@ import ListEmpty from "./ListEmpty.astro";
         <box-icon name="minus" class="fill-current"></box-icon>
       </button>
     </div>
+
     <div class="divider my-1"></div>
   </div>
 </template>
