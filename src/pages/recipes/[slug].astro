@@ -11,15 +11,10 @@ export async function getStaticPaths() {
 
 const { recipe } = Astro.props;
 const { Content } = await recipe.render();
+
+export const partial = true;
 ---
 
-<html lang="ru">
-  <head>
-    <meta charset="utf-8" />
-  </head>
-  <body>
-    <div class="prose">
-      {recipe.body ? <Content /> : <div>Рецепт скоро будет добавлен.</div>}
-    </div>
-  </body>
-</html>
+<div class="prose">
+  {recipe.body ? <Content /> : <div>Рецепт скоро будет добавлен.</div>}
+</div>
