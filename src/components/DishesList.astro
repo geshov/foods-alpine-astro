@@ -1,19 +1,11 @@
 ---
 import ListTitle from "./ListTitle.astro";
+import DishesSearch from "./DishesSearch.astro";
 import ListEmpty from "./ListEmpty.astro";
 ---
 
 <ListTitle title="Блюда" />
-
-<div class="input input-bordered w-full pe-0 mb-6 flex items-center">
-  <box-icon name="search" class="fill-current"></box-icon>
-  <input
-    x-model="search"
-    type="text"
-    placeholder="Поиск..."
-    class="input border-0 w-full h-full"
-  />
-</div>
+<DishesSearch />
 
 <template x-for="dish in dishes" :key="dish.slug">
   <div>
