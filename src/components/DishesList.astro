@@ -10,7 +10,12 @@ import ListEmpty from "./ListEmpty.astro";
 <template x-for="dish in dishes" :key="dish.slug">
   <div>
     <div class="flex justify-between items-center gap-4">
-      <div x-text="dish.data.name"></div>
+      <div
+        @click="showRecipe(dish.data.name, dish.slug)"
+        x-text="dish.data.name"
+        class="cursor-pointer"
+      >
+      </div>
       <button
         @click="toggleSelect(dish)"
         class="btn btn-sm btn-square btn-outline"

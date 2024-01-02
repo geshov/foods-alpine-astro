@@ -12,6 +12,9 @@ Alpine.data("foods", function () {
     select: this.$persist([]),
     buy: this.$persist([]),
 
+    name: "",
+    recipe: "",
+
     get dishes() {
       const term = this.search.toLowerCase();
       return this.recipes
@@ -43,6 +46,16 @@ Alpine.data("foods", function () {
         else return 0;
       });
       return foods;
+    },
+
+    showRecipe(name, slug) {
+      fetch(`/recipes/${slug}/`)
+        .then((response) => response.text())
+        .then((text) => {
+          this.name = name;
+          this.recipe = text;
+          this.$refs.recipe.showModal();
+        });
     },
 
     toggleSelect(dish) {

@@ -7,6 +7,8 @@ import ClearButton from "./ClearButton.astro";
 import DishesList from "./DishesList.astro";
 import MenuList from "./MenuList.astro";
 import FoodsList from "./FoodsList.astro";
+
+import DishRecipe from "./DishRecipe.astro";
 ---
 
 <section class="_section">
@@ -31,6 +33,8 @@ import FoodsList from "./FoodsList.astro";
         <div x-show="view === 'foods'">
           <FoodsList />
         </div>
+
+        <DishRecipe />
       </div>
     </div>
   </div>

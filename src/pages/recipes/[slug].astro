@@ -1,0 +1,25 @@
+---
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const recipes = await getCollection("recipes");
+  return recipes.map((recipe) => ({
+    params: { slug: recipe.slug },
+    props: { recipe },
+  }));
+}
+
+const { recipe } = Astro.props;
+const { Content } = await recipe.render();
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <div class="prose">
+      <Content />
+    </div>
+  </body>
+</html>
