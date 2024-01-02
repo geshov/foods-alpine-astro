@@ -1,6 +1,6 @@
 ---
 import ListTitle from "./ListTitle.astro";
-import Recipe from "./Recipe.astro";
+import RecipeOpen from "./RecipeOpen.astro";
 import ListEmpty from "./ListEmpty.astro";
 ---
 
@@ -9,7 +9,7 @@ import ListEmpty from "./ListEmpty.astro";
 <template x-for="dish in menu" :key="dish.slug">
   <div>
     <div class="flex justify-between items-center gap-4">
-      <Recipe />
+      <RecipeOpen />
 
       <button
         @click="toggleSelect(dish)"
