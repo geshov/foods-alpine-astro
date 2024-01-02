@@ -6,74 +6,70 @@ import Foods from "./Foods.astro";
 
 <section class="_section">
   <div class="_container">
-    <div x-data="navbar">
-      <div class="flex justify-between gap-2 pb-6">
-        <div class="indicator flex-grow flex-shrink pt-1">
-          <span
-            x-text="$store.global.count.dishes"
-            class="indicator-item badge font-medium me-6"
-          >
-          </span>
-          <button
-            @click="view = 'dishes'"
-            class="btn btn-square btn-outline w-full"
-            :class="view ==='dishes' && 'btn-active'"
-          >
-            <box-icon type="solid" name="dish" class="fill-current"></box-icon>
-          </button>
+    <div x-data="recipes">
+      <div x-data="foods">
+        <div class="flex justify-between gap-2 pb-6">
+          <div class="indicator flex-grow flex-shrink pt-1">
+            <span
+              x-text="count.dishes"
+              class="indicator-item badge font-medium me-6"
+            >
+            </span>
+            <button
+              @click="view = 'dishes'"
+              class="btn btn-square btn-outline w-full"
+              :class="view ==='dishes' && 'btn-active'"
+            >
+              <box-icon type="solid" name="dish" class="fill-current"
+              ></box-icon>
+            </button>
+          </div>
+
+          <div class="indicator flex-grow flex-shrink pt-1">
+            <span
+              x-text="count.select"
+              class="indicator-item badge font-medium me-6"
+            >
+            </span>
+            <button
+              @click="view = 'select'"
+              class="btn btn-square btn-outline w-full"
+              :class="view ==='select' && 'btn-active'"
+            >
+              <box-icon type="solid" name="food-menu" class="fill-current"
+              ></box-icon>
+            </button>
+          </div>
+
+          <div class="indicator flex-grow flex-shrink pt-1">
+            <span
+              x-text="count.foods"
+              class="indicator-item badge font-medium me-6"
+            >
+            </span>
+            <button
+              @click="view = 'foods'"
+              class="btn btn-square btn-outline w-full"
+              :class="view ==='foods' && 'btn-active'"
+            >
+              <box-icon type="solid" name="cart" class="fill-current"
+              ></box-icon>
+            </button>
+          </div>
         </div>
 
-        <div class="indicator flex-grow flex-shrink pt-1">
-          <span
-            x-text="$store.global.count.select"
-            class="indicator-item badge font-medium me-6"
-          >
-          </span>
-          <button
-            @click="view = 'select'"
-            class="btn btn-square btn-outline w-full"
-            :class="view ==='select' && 'btn-active'"
-          >
-            <box-icon type="solid" name="food-menu" class="fill-current"
-            ></box-icon>
-          </button>
+        <div x-show="view === 'dishes'">
+          <Dishes />
         </div>
 
-        <div class="indicator flex-grow flex-shrink pt-1">
-          <span
-            x-text="$store.global.count.foods"
-            class="indicator-item badge font-medium me-6"
-          >
-          </span>
-          <button
-            @click="view = 'foods'"
-            class="btn btn-square btn-outline w-full"
-            :class="view ==='foods' && 'btn-active'"
-          >
-            <box-icon type="solid" name="cart" class="fill-current"></box-icon>
-          </button>
+        <div x-show="view === 'select'">
+          <Menu />
         </div>
-      </div>
 
-      <div x-show="view === 'dishes'">
-        <Dishes />
-      </div>
-
-      <div x-show="view === 'select'">
-        <Menu />
-      </div>
-
-      <div x-show="view === 'foods'">
-        <Foods />
+        <div x-show="view === 'foods'">
+          <Foods />
+        </div>
       </div>
     </div>
   </div>
 </section>
-
-<script is:inline>
-  document.addEventListener("alpine:init", () => {
-    Alpine.data("navbar", () => ({
-      view: "dishes",
-    }));
-  });
-</script>

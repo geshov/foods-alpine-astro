@@ -31,60 +31,16 @@ const recipes = sortDishes(await getCollection("recipes")).map((recipe) => ({
 
 <script>
   import "boxicons";
-  import Alpine from "alpinejs";
-  window["Alpine"] = Alpine;
-  Alpine.start();
 </script>
 
 <script define:vars={{ recipes }}>
   document.addEventListener("alpine:init", () => {
-    Alpine.store("global", {
-      select: [],
-      buy: [],
-
+    Alpine.data("recipes", () => ({
       get recipes() {
         return recipes;
       },
-
-      get count() {
-        return {
-          dishes: this.recipes.length,
-          select: this.select.length,
-          foods: this.foods.length,
-        };
-      },
-
-      get menu() {
-        return this.recipes.filter((dish) => this.select.includes(dish.slug));
-      },
-
-      get foods() {
-        let menuFoods = [];
-        this.menu.forEach((dish) => {
-          const dishFoods = dish.data.foods.map((food, index) => ({
-            slug: dish.slug + "-" + index,
-            name: food,
-            dish: dish.data.name,
-          }));
-          menuFoods = [...menuFoods, ...dishFoods];
-        });
-        return this.sortFoods(menuFoods);
-      },
-
-      toggleSelect(dish) {
-        const index = this.select.indexOf(dish.slug);
-        if (index === -1) this.select.push(dish.slug);
-        else this.select.splice(index, 1);
-      },
-
-      sortFoods(foods) {
-        foods.sort((a, b) => {
-          if (a.name > b.name) return 1;
-          else if (a.name < b.name) return -1;
-          else return 0;
-        });
-        return foods;
-      },
-    });
+    }));
   });
 </script>
+
+<script src="../assets/js/foods"></script>
