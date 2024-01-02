@@ -8,14 +8,6 @@ Alpine.data("foods", () => ({
   select: [],
   buy: [],
 
-  get count() {
-    return {
-      dishes: this.recipes.length,
-      select: this.select.length,
-      foods: this.foods.length,
-    };
-  },
-
   get dishes() {
     const term = this.search.toLowerCase();
     return this.recipes
