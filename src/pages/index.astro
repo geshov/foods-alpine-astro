@@ -7,7 +7,6 @@ import { sortDishes } from "../utils/helpers";
 
 import Theme from "../components/Theme.astro";
 import Navbar from "../components/Navbar.astro";
-import { fade } from "astro:transitions";
 
 const recipes = sortDishes(await getCollection("recipes")).map((recipe) => ({
   data: recipe.data,
