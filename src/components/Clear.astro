@@ -1,0 +1,20 @@
+<div class="indicator flex-grow flex-shrink pt-1">
+  <button
+    @click="$refs.clear.showModal()"
+    class="btn btn-square btn-outline w-full"
+  >
+    <box-icon type="solid" name="eraser" class="fill-current"></box-icon>
+  </button>
+</div>
+
+<dialog x-ref="clear" class="modal">
+  <div class="modal-box">
+    <div>Хотите всё сбросить?</div>
+    <div class="modal-action">
+      <form method="dialog" class="flex gap-2">
+        <button @click="clearAll" class="btn">Да</button>
+        <button class="btn">Нет</button>
+      </form>
+    </div>
+  </div>
+</dialog>
