@@ -1,0 +1,16 @@
+<form class="flex gap-2 mb-6">
+  <input
+    x-model="add"
+    type="text"
+    placeholder="Добавить продукт..."
+    class="input input-bordered flex-grow flex-shrink min-w-20"
+  />
+  <button
+    @click="addFood"
+    type="submit"
+    class="btn btn-square btn-outline flex-grow"
+    :disabled="!add"
+  >
+    <box-icon type="solid" name="cart-add" class="fill-current"></box-icon>
+  </button>
+</form>

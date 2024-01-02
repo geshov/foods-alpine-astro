@@ -1,9 +1,11 @@
 ---
 import ListTitle from "./ListTitle.astro";
+import FoodsAdd from "./FoodsAdd.astro";
 import ListEmpty from "./ListEmpty.astro";
 ---
 
 <ListTitle title="Продукты" />
+<FoodsAdd />
 
 <template x-for="food in foods" :key="food.slug">
   <div>
@@ -24,4 +26,7 @@ import ListEmpty from "./ListEmpty.astro";
   </div>
 </template>
 
-<ListEmpty show="!foods.length" text="Блюда не выбраны." />
+<ListEmpty
+  show="!foods.length"
+  text="Выберите блюда или добавьте продукты вручную."
+/>

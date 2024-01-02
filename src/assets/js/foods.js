@@ -12,6 +12,9 @@ Alpine.data("foods", function () {
     select: this.$persist([]),
     buy: this.$persist([]),
 
+    add: "",
+    custom: this.$persist([]),
+
     name: "",
     recipe: "",
 
@@ -28,6 +31,7 @@ Alpine.data("foods", function () {
 
     get foods() {
       let menuFoods = [];
+
       this.menu.forEach((dish) => {
         const dishFoods = dish.data.foods.map((food, index) => ({
           slug: dish.slug + "-" + index,
@@ -36,6 +40,14 @@ Alpine.data("foods", function () {
         }));
         menuFoods = [...menuFoods, ...dishFoods];
       });
+
+      const customFoods = this.custom.map((item, index) => ({
+        slug: "custom-" + index,
+        name: item,
+        dish: "Добавлено вручную",
+      }));
+      menuFoods = [...menuFoods, ...customFoods];
+
       return this.sortFoods(menuFoods);
     },
 
@@ -64,6 +76,11 @@ Alpine.data("foods", function () {
       else this.select.splice(index, 1);
     },
 
+    addFood() {
+      this.custom.push(this.add);
+      this.add = "";
+    },
+
     toggleBuy(food) {
       const index = this.buy.indexOf(food.slug);
       if (index === -1) this.buy.push(food.slug);
@@ -78,6 +95,7 @@ Alpine.data("foods", function () {
 
     clearAll() {
       this.buy.splice(0, this.buy.length);
+      this.custom.splice(0, this.custom.length);
       this.select.splice(0, this.select.length);
       this.search = "";
     },
