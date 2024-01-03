@@ -6,7 +6,7 @@ import { getCollection } from "astro:content";
 import { sortDishes } from "../utils/helpers";
 
 import Theme from "../components/Theme.astro";
-import Navbar from "../components/Navbar.astro";
+import Lists from "../components/Lists.astro";
 
 const recipes = sortDishes(await getCollection("recipes")).map((recipe) => ({
   data: recipe.data,
@@ -26,7 +26,7 @@ const recipes = sortDishes(await getCollection("recipes")).map((recipe) => ({
   </head>
   <body>
     <Theme />
-    <Navbar />
+    <Lists />
   </body>
 </html>
 

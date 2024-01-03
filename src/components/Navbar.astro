@@ -3,39 +3,11 @@ import DishesButton from "./DishesButton.astro";
 import MenuButton from "./MenuButton.astro";
 import FoodsButton from "./FoodsButton.astro";
 import ClearButton from "./ClearButton.astro";
-
-import DishesList from "./DishesList.astro";
-import MenuList from "./MenuList.astro";
-import FoodsList from "./FoodsList.astro";
-
-import RecipeModal from "./RecipeModal.astro";
 ---
 
-<section class="_section">
-  <div class="_container">
-    <div x-data="recipes">
-      <div x-data="foods">
-        <div class="flex justify-between gap-2 mb-6">
-          <DishesButton />
-          <MenuButton />
-          <FoodsButton />
-          <ClearButton />
-        </div>
-
-        <div x-show="view === 'dishes'">
-          <DishesList />
-        </div>
-
-        <div x-show="view === 'menu'">
-          <MenuList />
-        </div>
-
-        <div x-show="view === 'foods'">
-          <FoodsList />
-        </div>
-
-        <RecipeModal />
-      </div>
-    </div>
-  </div>
-</section>
+<div class="flex justify-between gap-2 mb-6">
+  <DishesButton />
+  <MenuButton />
+  <FoodsButton />
+  <ClearButton />
+</div>
