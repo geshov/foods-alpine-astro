@@ -63,11 +63,13 @@ Alpine.data("foods", function () {
     },
 
     showRecipe(name, slug) {
+      this.$refs.loader.showModal();
       fetch(`/recipes/${slug}/`)
         .then((response) => response.text())
         .then((text) => {
           this.name = name;
           this.recipe = text;
+          this.$refs.loader.close();
           this.$refs.recipe.showModal();
         });
     },
