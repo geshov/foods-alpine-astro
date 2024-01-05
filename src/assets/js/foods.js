@@ -11,6 +11,7 @@ Alpine.data("foods", function () {
 
     select: this.$persist([]),
     buy: this.$persist([]),
+    hide: this.$persist(false),
 
     add: "",
     custom: this.$persist([]),
@@ -49,6 +50,14 @@ Alpine.data("foods", function () {
       menuFoods = [...menuFoods, ...customFoods];
 
       return this.sortFoods(menuFoods);
+    },
+
+    get hidefoods() {
+      if (this.hide) {
+        return this.foods.filter((food) => !this.isBuy(food));
+      } else {
+        return this.foods;
+      }
     },
 
     sortFoods(foods) {
@@ -98,6 +107,7 @@ Alpine.data("foods", function () {
     },
 
     clearAll() {
+      this.hide = false;
       this.buy = [];
       this.custom = [];
       this.select = [];

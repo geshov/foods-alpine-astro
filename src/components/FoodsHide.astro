@@ -1,0 +1,6 @@
+<div x-show="foods.length" class="flex justify-center my-4">
+  <button @click="hide = !hide" class="btn btn-outline">
+    <span x-text="hide ? 'Показать отмеченные' : 'Скрыть отмеченные'"></span>
+    <span x-text="buy.length"></span>
+  </button>
+</div>

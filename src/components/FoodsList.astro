@@ -1,13 +1,14 @@
 ---
 import ListTitle from "./ListTitle.astro";
 import FoodsAdd from "./FoodsAdd.astro";
+import FoodsHide from "./FoodsHide.astro";
 import ListEmpty from "./ListEmpty.astro";
 ---
 
 <ListTitle title="Продукты" />
 <FoodsAdd />
 
-<template x-for="food in foods" :key="food.slug">
+<template x-for="food in hidefoods" :key="food.slug">
   <div>
     <div class="flex justify-between items-center gap-4">
       <div>
@@ -25,6 +26,8 @@ import ListEmpty from "./ListEmpty.astro";
     <div class="divider my-1"></div>
   </div>
 </template>
+
+<FoodsHide />
 
 <ListEmpty
   show="!foods.length"
