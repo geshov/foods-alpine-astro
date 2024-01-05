@@ -98,9 +98,9 @@ Alpine.data("foods", function () {
     },
 
     clearAll() {
-      this.buy.splice(0, this.buy.length);
-      this.custom.splice(0, this.custom.length);
-      this.select.splice(0, this.select.length);
+      this.buy = [];
+      this.custom = [];
+      this.select = [];
       this.search = "";
     },
   };
