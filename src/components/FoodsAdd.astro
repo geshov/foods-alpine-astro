@@ -2,15 +2,14 @@
   <input
     x-model="add"
     type="text"
-    placeholder="Добавить продукт..."
+    placeholder="Название"
     class="input input-bordered flex-grow flex-shrink min-w-20"
   />
   <button
     @click="addFood"
     type="submit"
     class="btn btn-outline flex-grow px-2"
-    :disabled="!add"
-  >
-    <box-icon type="solid" name="cart-add" class="fill-current"></box-icon>
+    :disabled="!add">
+    <box-icon name="list-plus" class="fill-current"></box-icon>
   </button>
 </form>
