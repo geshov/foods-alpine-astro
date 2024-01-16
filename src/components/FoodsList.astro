@@ -5,7 +5,7 @@ import FoodsHide from "./FoodsHide.astro";
 import ListEmpty from "./ListEmpty.astro";
 ---
 
-<ListTitle title="Продукты" />
+<ListTitle title="Купить" />
 <FoodsAdd />
 
 <template x-for="food in hidefoods" :key="food.slug">
@@ -17,8 +17,7 @@ import ListEmpty from "./ListEmpty.astro";
       </div>
       <button
         @click="toggleBuy(food)"
-        class="btn btn-sm btn-square btn-outline"
-      >
+        class="btn btn-sm btn-square btn-outline">
         <box-icon x-show="isBuy(food)" name="check" class="fill-current"
         ></box-icon>
       </button>
@@ -31,5 +30,5 @@ import ListEmpty from "./ListEmpty.astro";
 
 <ListEmpty
   show="!foods.length"
-  text="Выберите блюда или добавьте продукты вручную."
+  text="Выберите блюда или добавьте покупки вручную."
 />
