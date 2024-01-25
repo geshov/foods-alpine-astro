@@ -1,4 +1,4 @@
-setTimeout(() => {
+const metrika = () => {
   (function (m, e, t, r, i, k, a) {
     m[i] =
       m[i] ||
@@ -23,4 +23,13 @@ setTimeout(() => {
     trackLinks: true,
     accurateTrackBounce: true,
   });
-}, 3000);
+};
+
+if (
+  navigator.language === "en-US" &&
+  document.referrer.indexOf(window.location.hostname) === -1
+) {
+  window.addEventListener("scroll", metrika, { once: true });
+} else {
+  metrika();
+}
